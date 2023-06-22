@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModelCarService" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Auto">
+    <Key>
+      <PropertyRef Name="IdAuto" />
+    </Key>
+    <Property Name="IdAuto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdClient" Type="Int32" />
+    <Property Name="Mark" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="YearOfRelease" Type="Int32" />
+    <Property Name="GosNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Auto_Client1" FromRole="Auto" ToRole="Client" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Auto" FromRole="Auto" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="IdClient" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Telephone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_Client1" FromRole="Client" ToRole="Auto" />
+  </EntityType>
+  <EntityType Name="DetailOrService">
+    <Key>
+      <PropertyRef Name="IdDetailOrService" />
+    </Key>
+    <Property Name="IdDetailOrService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TypeProduct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderList" Relationship="Self.FK_OrderList_DetailOrService1" FromRole="DetailOrService" ToRole="OrderList" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+    </Key>
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="Education" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Speciality" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="img" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idRole" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Employee_Roles1" FromRole="Employee" ToRole="Roles" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
+    <NavigationProperty Name="Order1" Relationship="Self.FK_Order_Employee3" FromRole="Employee" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAutoMechanic" Type="Int32" />
+    <Property Name="IdManager" Type="Int32" />
+    <Property Name="IdAuto" Type="Int32" />
+    <Property Name="DateOfRegistration" Type="DateTime" Precision="3" />
+    <Property Name="DateOfDelivery" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Auto" Relationship="Self.FK_Order_Auto" FromRole="Order" ToRole="Auto" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Order_Employee3" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="OrderList" Relationship="Self.FK_OrderList_Order1" FromRole="Order" ToRole="OrderList" />
+  </EntityType>
+  <EntityType Name="OrderList">
+    <Key>
+      <PropertyRef Name="IdOrderList" />
+    </Key>
+    <Property Name="IdOrderList" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDetailOrService" Type="Int32" />
+    <Property Name="IdOrder" Type="Int32" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="SumPrice" Type="Double" />
+    <NavigationProperty Name="DetailOrService" Relationship="Self.FK_OrderList_DetailOrService1" FromRole="OrderList" ToRole="DetailOrService" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderList_Order1" FromRole="OrderList" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="idRole" />
+    </Key>
+    <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Roles1" FromRole="Roles" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Auto_Client1">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IdClient" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Auto">
+    <End Role="Auto" Type="Self.Auto" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Auto">
+        <PropertyRef Name="IdAuto" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdAuto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderList_DetailOrService1">
+    <End Role="DetailOrService" Type="Self.DetailOrService" Multiplicity="0..1" />
+    <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetailOrService">
+        <PropertyRef Name="IdDetailOrService" />
+      </Principal>
+      <Dependent Role="OrderList">
+        <PropertyRef Name="IdDetailOrService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Roles1">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="idRole" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdAutoMechanic" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee3">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderList_Order1">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderList" Type="Self.OrderList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="IdOrder" />
+      </Principal>
+      <Dependent Role="OrderList">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarServiceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Auto" EntityType="Self.Auto" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="DetailOrService" EntityType="Self.DetailOrService" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="OrderList" EntityType="Self.OrderList" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Auto_Client1" Association="Self.FK_Auto_Client1">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Auto" Association="Self.FK_Order_Auto">
+      <End Role="Auto" EntitySet="Auto" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderList_DetailOrService1" Association="Self.FK_OrderList_DetailOrService1">
+      <End Role="DetailOrService" EntitySet="DetailOrService" />
+      <End Role="OrderList" EntitySet="OrderList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Roles1" Association="Self.FK_Employee_Roles1">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee3" Association="Self.FK_Order_Employee3">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderList_Order1" Association="Self.FK_OrderList_Order1">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderList" EntitySet="OrderList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

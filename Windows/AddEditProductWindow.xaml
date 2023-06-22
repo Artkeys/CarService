@@ -1,0 +1,45 @@
+﻿<Window x:Class="CarService.Windows.AddEditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarService.Windows"
+        mc:Ignorable="d"
+        Title="Добавление/редактирование продукта" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Height="600" Width="600">
+    <Grid>
+        <StackPanel Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Tag="IsCloseButton" Click="btnClose_Click"/>
+            <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+        </StackPanel>
+        <Border Grid.RowSpan="2" Background="{DynamicResource PrimaryBackgroundColor}" Grid.Column="1" CornerRadius="25 25 25 25" MouseDown="Border_MouseDown">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock x:Name="TitleTb" Text="Добавление продукта" Style="{DynamicResource titleText}" Foreground="#FF9E00"></TextBlock>
+                <StackPanel Margin="20 20 0 0" HorizontalAlignment="Center">
+                    <TextBlock Style="{DynamicResource tbListView}" FontSize="28" Foreground="{DynamicResource TextSecundaryColor}">Название товара или услуги:</TextBlock>
+                    <TextBox x:Name="nameTxt" Text="{Binding Name}" Style="{DynamicResource mainTextBox}" FontSize="26" Width="500"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="20 20 0 0" HorizontalAlignment="Center">
+                    <TextBlock Style="{DynamicResource tbListView}" FontSize="28" Foreground="{DynamicResource TextSecundaryColor}">Количество:</TextBlock>
+                    <TextBox x:Name="amountTxt" Text="{Binding Amount}" Style="{DynamicResource mainTextBox}" Width="500" FontSize="26" PreviewTextInput="amountTxt_PreviewTextInput"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="20 20 0 0" HorizontalAlignment="Center">
+                    <TextBlock Style="{DynamicResource tbListView}" FontSize="28" Foreground="{DynamicResource TextSecundaryColor}">Цена:</TextBlock>
+                    <TextBox x:Name="priceTxt" Text="{Binding Price}" Style="{DynamicResource mainTextBox}" Width="500" FontSize="26" PreviewTextInput="priceTxt_PreviewTextInput"></TextBox>
+                </StackPanel>
+                <StackPanel Margin="20 20 0 0" HorizontalAlignment="Center">
+                    <TextBlock Style="{DynamicResource tbListView}" FontSize="28" Foreground="{DynamicResource TextSecundaryColor}">Тип:</TextBlock>
+                    <ComboBox Style="{DynamicResource ComboBoxStyle}" x:Name="typeCmb" Text="{Binding TypeProduct}" SelectedItem="{Binding TypeProduct}" Width="500" FontSize="26"></ComboBox>
+                </StackPanel>
+                <StackPanel Margin="20 20 0 0" Width="500" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Style="{DynamicResource tbListView}" VerticalAlignment="Center" FontSize="28" Foreground="{DynamicResource TextSecundaryColor}">Изображение:</TextBlock>
+                    <Button x:Name="ChoosePhotoBtn" Style="{DynamicResource ControlBtn}" Width="150" Height="30" Margin="10 0 0 0" Background="#01d0fb" Click="ChoosePhotoBtn_Click">Выбрать фото</Button>
+                    <Image x:Name="ChoosePhotoImage" Width="90" Height="90" Margin="30 0 0 0" Stretch="UniformToFill" Source="{Binding pathImageProducts}"></Image>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="SaveBtn" Foreground="White" Width="200" Height="45" FontSize="28" Margin="0 20 0 0" Content="Сохранить" Style="{DynamicResource ControlBtn}" Background="#00ab5e" Click="SaveBtn_Click"></Button>
+                    <Button x:Name="CancelBtn" Foreground="White" Width="200" Height="45" FontSize="28" Margin="40 20 0 0" Content="Отмена" Style="{DynamicResource ControlBtn}" Background="#e63946" Click="CancelBtn_Click"></Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

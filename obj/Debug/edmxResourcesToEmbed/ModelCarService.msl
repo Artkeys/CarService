@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ModelCarServiceContainer" CdmEntityContainer="CarServiceEntities">
+    <EntitySetMapping Name="Auto">
+      <EntityTypeMapping TypeName="ModelCarService.Auto">
+        <MappingFragment StoreEntitySet="Auto">
+          <ScalarProperty Name="IdAuto" ColumnName="IdAuto" />
+          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="YearOfRelease" ColumnName="YearOfRelease" />
+          <ScalarProperty Name="GosNumber" ColumnName="GosNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="ModelCarService.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailOrService">
+      <EntityTypeMapping TypeName="ModelCarService.DetailOrService">
+        <MappingFragment StoreEntitySet="DetailOrService">
+          <ScalarProperty Name="IdDetailOrService" ColumnName="IdDetailOrService" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="TypeProduct" ColumnName="TypeProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="ModelCarService.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="ModelCarService.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="IdAutoMechanic" ColumnName="IdAutoMechanic" />
+          <ScalarProperty Name="IdManager" ColumnName="IdManager" />
+          <ScalarProperty Name="IdAuto" ColumnName="IdAuto" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderList">
+      <EntityTypeMapping TypeName="ModelCarService.OrderList">
+        <MappingFragment StoreEntitySet="OrderList">
+          <ScalarProperty Name="IdOrderList" ColumnName="IdOrderList" />
+          <ScalarProperty Name="IdDetailOrService" ColumnName="IdDetailOrService" />
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="SumPrice" ColumnName="SumPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ModelCarService.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ModelCarService.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

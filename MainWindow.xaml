@@ -1,0 +1,100 @@
+﻿<Window x:Class="CarService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarService"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1300"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Background="Transparent" AllowsTransparency="True"
+        ResizeMode="NoResize" WindowState="Normal">
+    <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Border CornerRadius="8 0 0 8" Background="{DynamicResource SecundaryBackgroundColor}">
+                <Grid x:Name="gridMenu" Width="60">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Image Source="/Resources/logo.png" Margin="7 0 0 0" Stretch="Fill" Width="45" Height="45" HorizontalAlignment="Left"/>
+                        <Label Content="Автосервис" Foreground="{DynamicResource PrimaryBlueColor}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="14 0 0 0"/>
+                    </StackPanel>
+
+                    <ToggleButton x:Name="btnMenu"  HorizontalAlignment="Right" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" Style="{StaticResource MenuIconStyle}" Margin="0 0 15 0">
+                        <ToggleButton.Triggers>
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="HideStackPanel">
+                                        <DoubleAnimation Storyboard.TargetName="gridMenu" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="200" To="60" Duration="0:0:0.3">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="ShowStackPanel">
+                                        <DoubleAnimation Storyboard.TargetName="gridMenu" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="200" Duration="0:0:0.3">
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ToggleButton.Triggers>
+                    </ToggleButton>
+
+                    <StackPanel Grid.Row="3">
+                        <RadioButton x:Name="clientBtn" Content="Клиенты" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource client}" Click="clientBtn_Click"/>
+                        <RadioButton x:Name="productsBtn" Content="Продукты" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource product}" Margin="0 5 0 5" Click="productsBtn_Click"/>
+                        <RadioButton x:Name="employeeBtn" Content="Сотрудники" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource employee}" Click="employeeBtn_Click"/>
+                        <RadioButton x:Name="ordersBtn" Content="Заказы" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource order}" Margin="0 5 0 5" Click="ordersBtn_Click"/>
+                        <RadioButton x:Name="reportsBtn" Content="Отчёты" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource report}" Margin="0 5 0 5" Click="reportsBtn_Click"/>
+                        <RadioButton x:Name="employmentBtn" Content="Занятость" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource employment}" Click="employmentBtn_Click" Margin="0 5 0 5"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" VerticalAlignment="Bottom" Orientation="Vertical" Width="200" Margin="0 0 0 20">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="40" Height="40" Margin="10 0 0 0">
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="profileImg"></ImageBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Orientation="Vertical" Margin="8 0 0 0">
+                                <Label x:Name="FIOLbl" Foreground="{DynamicResource TextPrimaryColor}" FontSize="14" FontWeight="SemiBold" HorizontalContentAlignment="Center" HorizontalAlignment="Left"/>
+                                <Label x:Name="RolesLbl" Foreground="{DynamicResource PrimaryOrangeColor}" FontSize="11" FontWeight="Regular" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0 -10 0 0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <RadioButton x:Name="singOutBtn" Content="Выйти" Style="{DynamicResource MenuRadioButtonStyle}" Tag="{DynamicResource login}" Margin="0 20 0 5" Click="singOutBtn_Click"></RadioButton>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+                <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Tag="IsCloseButton" Click="btnClose_Click" Cursor="Hand"/>
+                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+                </StackPanel>
+
+                <Border Grid.Row="1" Margin="10">
+                    <Frame x:Name="PagesNavigationFrame" NavigationUIVisibility="Hidden" Background="{DynamicResource PrimaryBackgroundColor}">
+
+                    </Frame>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
